@@ -21,9 +21,14 @@ public class studentService {
             group group = new group(i, new ArrayList<student>());
             groupList.add(group);
         }
-        Collections.shuffle(studentDao.studentList);
+        List<student> stuList = new ArrayList<student>();
+        for(int i = 0; i < studentDao.studentList.size(); ++i) {
+            student stu = new student(studentDao.studentList.get(i).getId(), studentDao.studentList.get(i).getName());
+            stuList.add(stu);
+        }
+        Collections.shuffle(stuList);
         for (int i = 0; i < studentDao.studentList.size(); ++i) {
-            groupList.get(i % 6).getStudentList().add(studentDao.studentList.get(i));
+            groupList.get(i % 6).getStudentList().add(stuList.get(i));
         }
         return groupList;
     }
