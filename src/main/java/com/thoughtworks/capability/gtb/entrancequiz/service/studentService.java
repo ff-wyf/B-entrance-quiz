@@ -6,6 +6,7 @@ import com.thoughtworks.capability.gtb.entrancequiz.domain.student;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -20,6 +21,7 @@ public class studentService {
             group group = new group(i, new ArrayList<student>());
             groupList.add(group);
         }
+        Collections.shuffle(studentDao.studentList);
         for (int i = 0; i < studentDao.studentList.size(); ++i) {
             groupList.get(i % 6).getStudentList().add(studentDao.studentList.get(i));
         }
